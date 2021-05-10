@@ -14,17 +14,15 @@ jobs:
               python-version: "3.8"
               architecture: "x64"
 
-         - name: "Install poetry"
+         - name: "Dependencies"
            run: |
-              pip install poetry
+              pip install poetry twine
 
          - name: "Build"
            run: poetry build 
 
-         - uses: pypa/gh-action-pypi-publish@release/v1
-           with:
-              user: __token__
-              password: ${{ secrets.PYPI_API_TOKEN }}
-              verify_metadata: true
-              skip_existing: true
-              verbose: true
+         - name: "Publish"
+           run: |
+              twine upload dist/* --username __token__ --password ${{ secrets.PYPI_API_TOKEN }}
+
+
