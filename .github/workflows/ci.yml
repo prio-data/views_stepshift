@@ -27,3 +27,4 @@ jobs:
               password: ${{ secrets.PYPI_API_TOKEN }}
               verify_metadata: true
               skip_existing: true
+              verbose: true
