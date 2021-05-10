@@ -1,0 +1,9 @@
+[MODULE]
+disable=
+   C0301, #Wontfix
+   C0103, #Wontfix
+   C0116, #Wontfix
+   R0912, #Wontfix
+   R0914, #Wontfix
+   W1203, #Wontfix
+   C0302, #Wontfix

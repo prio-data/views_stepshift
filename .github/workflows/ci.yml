@@ -1,0 +1,29 @@
+name: ci
+on:
+   push:
+      branches: master
+jobs:
+   build-and-deploy:
+      runs-on: ubuntu-latest
+      name: "Set up build environment"
+      steps:
+         - uses: actions/checkout@v2
+
+         - uses: actions/setup-python@v2
+           with:
+              python-version: "3.8"
+              architecture: "x64"
+
+         - name: "Install poetry"
+           run: |
+              pip install poetry
+
+         - name: "Build"
+           run: poetry build 
+
+         - uses: pypa/gh-action-pypi-publish@release/v1
+           with:
+              user: __token__
+              password: ${{ secrets.PYPI_API_TOKEN }}
+              verify_metadata: true
+              skip_existing: true
